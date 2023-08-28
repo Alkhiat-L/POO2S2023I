@@ -23,9 +23,8 @@ class User {
 
 }
 const jonas = new User()
+jonas.rent(60)
+console.log(`R$${jonas.price},00`)
 jonas.subscribe()
 jonas.rent(60)
-console.log(jonas.price)
-jonas.unsubscribe()
-jonas.rent(60)
-console.log(jonas.price)
+console.log(`R$${jonas.price},00`)
