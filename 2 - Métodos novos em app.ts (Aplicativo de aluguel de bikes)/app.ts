@@ -8,8 +8,8 @@ export class App {
     rents: Rent[] = []
 
     add_user(user: User): void {
-        if (this.users.some(rUser => {
-          return rUser.email === user.email })) {
+        if (this.users.some(registered_user => {
+          return registered_user.email === user.email })) {
             throw new Error('User with same email already registered.')
         }
         this.users.push(user)
@@ -28,15 +28,20 @@ export class App {
         }
       this.rents.push(rent)
     }
-    return_bike(bike: Bike, returned_date: Date): void {
-      if (this.rents.some(registered_rent => {
-        return bike == registered_rent.bike})) {
-          this.rents.some(registered_rent => {
-            if (bike == registered_rent.bike) {
-              registered_rent.date_returned = returned_date
-            }})
-        }else {
-          throw new Error("This bike does not exists or is not rent")
+    add_bike(bike: Bike): void {
+      if (this.bikes.some(registered_bike => {
+          return registered_bike.id == bike.id })) {
+            throw new Error('Bike already registered.')
         }
+        this.bikes.push(bike)
+    }
+    return_bike(bike: Bike, returned_date: Date): void {
+      for (const registered_rents of this.rents) {
+        if (registered_rents.bike == bike && registered_rents.date_returned == null) {
+          registered_rents.date_returned = returned_date
+          return
+        }
+      }
+      throw new Error ("This bike does not exists or is not rent")
     }
 }
