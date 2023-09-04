@@ -5,8 +5,8 @@ import { App } from "./app"
 
 
 
-const bike = new Bike('mountain bike', 'mountain', 123, 130, '')
-const bike2 = new Bike('road bike', 'road', 123, 130, '')
+const bike = new Bike('mountain bike', 'mountain', 123, 130, '', '01')
+const bike2 = new Bike('road bike', 'road', 123, 130, '', '02')
 const user = new User('Maria', 'maria@mail.com', '1234')
 const today = new Date()
 const twoDaysFromToday = new Date()
@@ -28,7 +28,10 @@ console.log(app.users)
 app.remove_user(user2)
 console.log("NEW USERS:")
 console.log(app.users)
-
+app.add_bike(bike)
+app.add_bike(bike2)
+console.log("BIKES:")
+console.log(app.bikes)
 console.log("RENTS:")
 app.add_rent(Rent.create(app.rents, bike, user, today, twoDaysFromToday))
 console.log(app.rents)
