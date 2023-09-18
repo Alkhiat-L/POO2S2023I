@@ -67,8 +67,9 @@ export class App {
         if (rent) {
             rent.end_date = today
             rent.bike.disponible = true
-            const hours = diff_hours(rent.end, rent.start)
-            return hours * rent.bike.rate
+            //const hours = diff_hours(rent.end, rent.start)
+            //return hours * rent.bike.rate
+            return 1
         }
         throw new Error('Rent not found.')
     }
